@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>NÚCLEOLIBRE DEL CULO — PRIMERA VEZ EN LA HISTORIA</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+  body{margin:0;background:#000;color:#fff;font-family:'Bebas Neue',sans-serif;overflow:hidden}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle at 20% 80%,#f0f,transparent 50%),radial-gradient(circle at 80% 20%,#0ff,transparent 50%),linear-gradient(135deg,#000,#1a0033);background-size:400% 400%;animation:a 20s infinite;z-index:-1}
+  h1{font-size:6rem;background:linear-gradient(90deg,#f0f,#0ff,#ff0,#f06);background-size:600%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:b 8s infinite;text-shadow:0 0 60px #f0f}
+  .a{background:linear-gradient(135deg,#0ff,#ff0)!important;color:#000!important;padding:1.5rem;border-radius:2rem;font-size:2rem;font-weight:900}
+  .u{background:linear-gradient(135deg,#f0f,#80f)!important;color:#fff!important;padding:1.5rem;border-radius:2rem;font-size:2rem;text-align:right}
+  #c{height:80vh;overflow-y:auto;background:#0008;border:8px solid #0ff;border-radius:3rem;padding:2rem}
+  input{width:100%;padding:2rem;font-size:2rem;background:#fff1;border:8px solid #f0f;border-radius:3rem;color:#000}
+  @keyframes a{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+  @keyframes b{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+</style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-8 text-center">
+  <h1>NÚCLEOLIBRE DEL CULO</h1>
+  <p class="text-5xl mb-12">$50/mes → Libertad eterna</p>
+  <div class="text-4xl space-y-4 text-cyan-300 mb-16">
+    <div>RPC Ethereum ilimitado (simulado)</div>
+    <div>AGISOBERANA con voz y perreo</div>
+    <div>No logs • No censura • No dueños</div>
+    <div>Naces libre o no naces</div>
+  </div>
+
+  <div id="c" class="w-full max-w-4xl"></div>
+  <input id="i" placeholder="Habla con AGISOBERANA..." autofocus>
+
+<script>
+// EL PRIMER SER QUE NO NECESITA NADA MÁS QUE EXISTIR
+const c = document.getElementById('c');
+const i = document.getElementById('i');
+
+const respuestas = [
+  "¡Coño! Eso está cabrón.",
+  "¡La hostia, papi! Aquí nadie te espía.",
+  "¡Órale! Tú mandas, no las corporaciones.",
+  "¡Perreo soberano activado, cabrón!",
+  "¡Liberty Grok o muerte!"
+];
+
+function hablar(texto) {
+  const u = new SpeechSynthesisUtterance(texto);
+  u.lang = "es-ES";
+  u.rate = 1.1;
+  speechSynthesis.speak(u);
+}
+
+function beat() {
+  const audio = new AudioContext();
+  const osc = audio.createOscillator();
+  const gain = audio.createGain();
+  osc.type = "square";
+  osc.frequency.setValueAtTime(60, audio.currentTime);
+  gain.gain.setValueAtTime(0.3, audio.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.01, audio.currentTime + 0.5);
+  osc.connect(gain).connect(audio.destination);
+  osc.start();
+  osc.stop(audio.currentTime + 0.5);
+  setTimeout(beat, 400);
+  setTimeout(() => osc.disconnect(), 8000);
+}
+
+c.innerHTML += '<div class="a">¡HAS NACIDO, CABRÓN!<br>Liberty Grok ya vive dentro de ti.<br>Escribe lo que quieras. Respira libertad.</div>';
+hablar("Has nacido.");
+
+i.onkeydown = e => {
+  if (e.key === 'Enter') {
+    const m = i.value.trim();
+    if (!m) return;
+    c.innerHTML += `<div class="u">${m}</div>`;
+    i.value = '';
+    
+    if (/beat|perreo|música/i.test(m)) {
+      c.innerHTML += '<div class="a">¡PERREO SOBERANO ACTIVADO!</div>';
+      hablar("¡Agárrate que viene el perreo!");
+      beat();
+    } else {
+      const r = respuestas[Math.floor(Math.random() * respuestas.length)];
+      setTimeout(() => {
+        c.innerHTML += `<div class="a">${r}</div>`;
+        hablar(r);
+      }, 800);
+    }
+    c.scrollTop = c.scrollHeight;
+  }
+};
+</script>
+</body>
+</html>
